@@ -111,7 +111,7 @@ public class PlayFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_play, container, false);
-        Toast.makeText(getActivity(), getArguments().getString("playinfo"), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getActivity(), getArguments().getString("playinfo"), Toast.LENGTH_SHORT).show();
 
         imageView1 = (ImageView) view.findViewById(R.id.imageView3);
         imageView2 = (ImageView) view.findViewById(R.id.imageView13);

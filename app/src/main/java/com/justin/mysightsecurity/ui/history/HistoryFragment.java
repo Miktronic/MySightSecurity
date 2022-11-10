@@ -37,7 +37,7 @@ public class HistoryFragment extends Fragment {
     ExpandableListView expandableListView;
     ExpandableListAdapter expandableListAdapter;
     List<String> expandableListTitle;
-    HashMap<String, HashMap<String, String>> expandableListDetail;
+    ArrayList<HashMap<String, String>> expandableListDetail;
     SQLiteDatabase db;
 
     @SuppressLint("DefaultLocale")
@@ -72,7 +72,7 @@ public class HistoryFragment extends Fragment {
         } else {
             Log.d("My Test", "All is Ok right else");
             c.moveToFirst();
-            expandableListDetail = new HashMap<String, HashMap<String, String>>();
+            expandableListDetail = new ArrayList< HashMap<String, String>>();
             expandableListTitle = new ArrayList<String>();
 
 
@@ -87,7 +87,7 @@ public class HistoryFragment extends Fragment {
 //                Toast.makeText(getActivity(),c.getString(2), Toast.LENGTH_SHORT).show();
 ////                Log.d("bingo", String.format("%d", buffer.size()));
 //                Toast.makeText(getActivity(),String.format("%d", buffer.size()), Toast.LENGTH_SHORT ).show();
-                expandableListDetail.put(c.getString(1), buffer);
+                expandableListDetail.add(buffer);
                 expandableListTitle.add(c.getString(1));
             } while (c.moveToNext());
             expandableListView = (ExpandableListView) root.findViewById(R.id.expandableListView);

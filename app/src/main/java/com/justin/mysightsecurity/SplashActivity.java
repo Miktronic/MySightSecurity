@@ -89,7 +89,7 @@ public class SplashActivity extends AppCompatActivity {
                 SQLiteDatabase db;
 
                 db=SplashActivity.this.openOrCreateDatabase("sight.db", Context.MODE_PRIVATE,null);
-//                db.execSQL("DROP TABLE IF EXISTS Device");
+                db.execSQL("DROP TABLE IF EXISTS Device");
 //                db.execSQL("DROP TABLE IF EXISTS History");
                 String query_user = "CREATE TABLE IF NOT EXISTS User (id INTEGER PRIMARY KEY AUTOINCREMENT, user_email Text, user_password Text)";
                 String query_history = "CREATE TABLE IF NOT  EXISTS History (id INTEGER PRIMARY KEY AUTOINCREMENT, date Text, time Text, img_url Text, mov_url Text)";

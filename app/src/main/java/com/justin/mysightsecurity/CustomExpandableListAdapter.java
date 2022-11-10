@@ -31,11 +31,11 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter{
     private Context context;
     private Fragment fragment;
     private List<String> expandableListTitle;
-    private HashMap<String, HashMap<String, String>> expandableListDetail;
+    private List< HashMap<String, String>> expandableListDetail;
     private ItemClickListener mClickListener;
 
     public CustomExpandableListAdapter(Context context, Fragment fragment, List<String> expandableListTitle,
-                                       HashMap<String, HashMap<String, String>> expandableListDetail) {
+                                       List< HashMap<String, String>> expandableListDetail) {
         this.context = context;
         this.fragment = fragment;
         this.expandableListTitle = expandableListTitle;
@@ -44,7 +44,7 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter{
 
     @Override
     public HashMap<String, String> getChild(int listPosition, int expandedListPosition) {
-        return this.expandableListDetail.get(this.expandableListTitle.get(listPosition));
+        return this.expandableListDetail.get(listPosition);
     }
 
     @Override
@@ -100,8 +100,7 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter{
 
     @Override
     public int getChildrenCount(int listPosition) {
-        return this.expandableListDetail.get(this.expandableListTitle.get(listPosition))
-                .size()/2;
+        return this.expandableListDetail.get(listPosition).size()/2;
     }
 
     @Override

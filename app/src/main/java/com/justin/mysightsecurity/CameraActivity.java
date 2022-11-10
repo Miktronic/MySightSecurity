@@ -83,7 +83,7 @@ public class CameraActivity extends AppCompatActivity {
                 cout.flush();
                 cout.close();
             } catch (IOException e) {
-                Toast.makeText(getBaseContext(), "update failed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), "Update camera icon failed", Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
             }
             Cursor c = db.rawQuery("SELECT * FROM Device where ico_url = 'horse'",null);
@@ -139,7 +139,7 @@ public class CameraActivity extends AppCompatActivity {
             //Log.d("My Test", "All is Ok right here!");
             c.moveToPosition(Integer.parseInt(stringValue));
 //        Toast.makeText(this, stringValue, Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, c.getString(4), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, c.getString(4), Toast.LENGTH_SHORT).show();
             url = "http://" + c.getString(3)+":"+c.getString(5)+"@"+c.getString(1) + ":" + c.getString(2) + "/?action=stream";
             ip_address = c.getString(1);
             port = c.getString(2);
@@ -228,7 +228,7 @@ public class CameraActivity extends AppCompatActivity {
                         db.insert("History", null, val);
 
                     //    Toast.makeText(CameraActivity.this, url, Toast.LENGTH_SHORT).show();
-                        String exeStr = "-r 1 -i "+url+" -c:v mpeg4 -r 1 "+ recordFileName;
+                        String exeStr = "-r 5 -i "+url+" -c:v mpeg4 -r 5 "+ recordFileName;
 
                         session = FFmpegKit.executeAsync((exeStr), new FFmpegSessionCompleteCallback() {
 
@@ -288,15 +288,11 @@ public class CameraActivity extends AppCompatActivity {
 
 
         mjpegView.setAdjustHeight(true);
-        //view.setAdjustHeight(true);
         mjpegView.setMode(MjpegView.MODE_STRETCH);
-        //view1.setMode(MjpegView.MODE_FIT_HEIGHT);
-        //view1.setMsecWaitAfterReadImageError(1000);
         mjpegView.setUrl(url);
-        //mjpegView.setDistortion(false);
         mjpegView.startStream();
 
-        if(stringValue.equals("-1")) {
+        if(Integer.parseInt(stringValue) == -1) {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
